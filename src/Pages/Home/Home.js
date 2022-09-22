@@ -19,8 +19,8 @@ const Home = () => {
                     </ul>
                 </div>
             </div>
-            <button title="Add new Contact"
-                class="fixed z-90 bottom-10 right-8 bg-white w-20 h-20 rounded-full border-solid border-2 shadow-xl flex justify-center items-center text-white text-4xl hover:bg-base-100 hover:drop-shadow-xl hover:shadow-2xl"><span className='text-2xl'>➕</span></button>
+            <Link to="/addContact" title="Add new Contact"
+                class="fixed z-90 bottom-10 right-8 bg-white w-20 h-20 rounded-full border-solid border-2 shadow-xl flex justify-center items-center text-white text-4xl hover:bg-base-100 hover:drop-shadow-xl hover:shadow-2xl"><span className='text-2xl'>➕</span></Link>
         </div>
     );
 };

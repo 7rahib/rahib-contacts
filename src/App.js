@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import AddContact from './Pages/Home/AddContact';
 import Contacts from './Pages/Home/Contacts';
 import FreqeuntlyUsed from './Pages/Home/FreqeuntlyUsed';
 import Home from './Pages/Home/Home';
@@ -14,6 +15,7 @@ function App() {
         <Route path='/' element={<Home />}>
           <Route index element={<Contacts />} />
           <Route path='/frequentlyUsed' element={<FreqeuntlyUsed />} />
+          <Route path='/addContact' element={<AddContact />} />
         </Route>
       </Routes>
       <Footer></Footer>
