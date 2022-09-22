@@ -1,6 +1,14 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
+import ContactRow from './ContactRow';
 
 const Contacts = () => {
+    const { data: contacts, isLoading, refetch } = useQuery('contacts', () => fetch('http://localhost:5000/contacts').then(res => res.json()))
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
     return (
         <div className="overflow-x-auto w-full">
             <table className="table w-full">
@@ -14,150 +22,14 @@ const Contacts = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div className="flex items-center space-x-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="font-bold">Naimur Rashid Rahib</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td className='hidden md:table-cell'>
-                            rahib@gmail.com
-                        </td>
-                        <td className='hidden md:table-cell'>+8801785766545</td>
-                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div className="flex items-center space-x-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="font-bold">Naimur Rashid Rahib</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td className='hidden md:table-cell'>
-                            rahib@gmail.com
-                        </td>
-                        <td className='hidden md:table-cell'>+8801785766545</td>
-                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div className="flex items-center space-x-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="font-bold">Naimur Rashid Rahib</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td className='hidden md:table-cell'>
-                            rahib@gmail.com
-                        </td>
-                        <td className='hidden md:table-cell'>+8801785766545</td>
-                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div className="flex items-center space-x-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="font-bold">Naimur Rashid Rahib</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td className='hidden md:table-cell'>
-                            rahib@gmail.com
-                        </td>
-                        <td className='hidden md:table-cell'>+8801785766545</td>
-                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div className="flex items-center space-x-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="font-bold">Naimur Rashid Rahib</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td className='hidden md:table-cell'>
-                            rahib@gmail.com
-                        </td>
-                        <td className='hidden md:table-cell'>+8801785766545</td>
-                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th>
-                        <td>
-                            <div className="flex items-center space-x-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle w-12 h-12">
-                                        <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="font-bold">Naimur Rashid Rahib</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td className='hidden md:table-cell'>
-                            rahib@gmail.com
-                        </td>
-                        <td className='hidden md:table-cell'>+8801785766545</td>
-                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
-                    </tr>
+                    {
+                        contacts.map((contact, index) => <ContactRow
+                            key={contacts._id}
+                            contact={contact}
+                            refetch={refetch}
+                        >
+                        </ContactRow>)
+                    }
                 </tbody>
             </table>
         </div>
