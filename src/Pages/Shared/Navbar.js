@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AiFillIdcard } from "react-icons/ai";
 
 const Navbar = () => {
     return (
@@ -10,7 +11,7 @@ const Navbar = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-xl pr-5">Rahib Contacts</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-xl pr-5"><AiFillIdcard className="text-3xl mr-2 text-blue-600" /> Rahib Contacts</Link>
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">

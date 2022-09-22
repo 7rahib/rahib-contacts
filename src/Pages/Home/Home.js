@@ -14,8 +14,8 @@ const Home = () => {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-                        <li><Link to='/'><FiUser /> Contacts</Link></li>
-                        <li><Link to='/frequentlyUsed' className='mt-1'><FiClock /> Frequently Contacted</Link></li>
+                        <li><Link to='/'><FiUser className='text-blue-600 text-xl' /> Contacts</Link></li>
+                        <li><Link to='/frequentlyUsed' className='mt-1'><FiClock className='text-blue-600 text-xl' /> Frequently Contacted</Link></li>
                     </ul>
                 </div>
             </div>
