@@ -8,9 +8,9 @@ const Contacts = () => {
                     <tr>
                         <th></th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Job Title & Company</th>
+                        <th className='hidden md:table-cell'>Email</th>
+                        <th className='hidden md:table-cell'>Phone Number</th>
+                        <th className='hidden lg:table-cell'>Job Title & Company</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,11 +32,11 @@ const Contacts = () => {
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td className='hidden md:table-cell'>
                             rahib@gmail.com
                         </td>
-                        <td>+8801785766545</td>
-                        <td>Student at Leading University, Sylhet</td>
+                        <td className='hidden md:table-cell'>+8801785766545</td>
+                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
                     </tr>
                     <tr>
                         <th>
@@ -56,11 +56,11 @@ const Contacts = () => {
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td className='hidden md:table-cell'>
                             rahib@gmail.com
                         </td>
-                        <td>+8801785766545</td>
-                        <td>Student at Leading University, Sylhet</td>
+                        <td className='hidden md:table-cell'>+8801785766545</td>
+                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
                     </tr>
                     <tr>
                         <th>
@@ -80,11 +80,11 @@ const Contacts = () => {
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td className='hidden md:table-cell'>
                             rahib@gmail.com
                         </td>
-                        <td>+8801785766545</td>
-                        <td>Student at Leading University, Sylhet</td>
+                        <td className='hidden md:table-cell'>+8801785766545</td>
+                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
                     </tr>
                     <tr>
                         <th>
@@ -104,11 +104,11 @@ const Contacts = () => {
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td className='hidden md:table-cell'>
                             rahib@gmail.com
                         </td>
-                        <td>+8801785766545</td>
-                        <td>Student at Leading University, Sylhet</td>
+                        <td className='hidden md:table-cell'>+8801785766545</td>
+                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
                     </tr>
                     <tr>
                         <th>
@@ -128,11 +128,11 @@ const Contacts = () => {
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td className='hidden md:table-cell'>
                             rahib@gmail.com
                         </td>
-                        <td>+8801785766545</td>
-                        <td>Student at Leading University, Sylhet</td>
+                        <td className='hidden md:table-cell'>+8801785766545</td>
+                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
                     </tr>
                     <tr>
                         <th>
@@ -152,11 +152,11 @@ const Contacts = () => {
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td className='hidden md:table-cell'>
                             rahib@gmail.com
                         </td>
-                        <td>+8801785766545</td>
-                        <td>Student at Leading University, Sylhet</td>
+                        <td className='hidden md:table-cell'>+8801785766545</td>
+                        <td className='hidden lg:table-cell'>Student at Leading University, Sylhet</td>
                     </tr>
                 </tbody>
             </table>

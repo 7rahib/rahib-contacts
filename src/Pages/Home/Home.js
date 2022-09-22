@@ -1,19 +1,21 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { FiClock } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
 
 const Home = () => {
     return (
         <div>
-            <div className="drawer drawer-mobile lg:p-8">
+            <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     <Outlet></Outlet>
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 overflow-y-auto w-80 text-base-content">
-                        <li><Link to='/'>Contacts</Link></li>
-                        <li><Link to='/frequentlyUsed' className='mt-1'>Frequently Contacted</Link></li>
+                    <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+                        <li><Link to='/'><FiUser /> Contacts</Link></li>
+                        <li><Link to='/frequentlyUsed' className='mt-1'><FiClock /> Frequently Contacted</Link></li>
                     </ul>
                 </div>
             </div>
