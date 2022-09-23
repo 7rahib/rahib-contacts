@@ -28,10 +28,10 @@ const ContactRow = ({ contact, refetch }) => {
                 </div>
             </td>
             <td className='hidden md:table-cell'>
-                {email}
+                {(email) ? <h3>{email}</h3> : <h3 className='text-gray-300'>No email</h3>}
             </td>
-            <td className='hidden md:table-cell'>{phone}</td>
-            <td className='hidden lg:table-cell'>{company}</td>
+            <td className='hidden md:table-cell'>{(phone) ? <h3>{phone}</h3> : <h3 className='text-gray-300'>No phone</h3>}</td>
+            <td className='hidden lg:table-cell'>{(company) ? <h3>{company}</h3> : <h3 className='text-gray-300'>No company or job title</h3>}</td>
         </tr>
     );
 };
