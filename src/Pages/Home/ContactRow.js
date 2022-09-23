@@ -1,9 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ContactRow = ({ contact, refetch }) => {
+    const navigate = useNavigate();
     const { name, company, email, phone, img } = contact;
+    const handleClick = () => {
+        navigate('/contactDetails');
+    }
+
     return (
-        <tr>
+        <tr onClick={handleClick} className="hover">
             <th>
                 <label>
                     <input type="checkbox" className="checkbox" />

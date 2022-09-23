@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import AddContact from './Pages/Home/AddContact';
+import ContactDetails from './Pages/Home/ContactDetails';
 import Contacts from './Pages/Home/Contacts';
 import FreqeuntlyUsed from './Pages/Home/FreqeuntlyUsed';
 import Home from './Pages/Home/Home';
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Contacts />} />
           <Route path='/frequentlyUsed' element={<FreqeuntlyUsed />} />
           <Route path='/addContact' element={<AddContact />} />
+          <Route path='/contactDetails' element={<ContactDetails />} />
         </Route>
       </Routes>
       <Footer></Footer>
