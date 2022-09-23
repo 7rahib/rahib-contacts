@@ -5,7 +5,22 @@ const ContactRow = ({ contact, refetch }) => {
     const navigate = useNavigate();
     const { _id, name, company, email, phone, img } = contact;
     const handleClick = () => {
-        navigate(`/contactDetails/${_id}`);
+        fetch(`http://localhost:5000/contacts/count/${_id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+            }
+        })
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    refetch();
+                    console.log('Updated');
+                }
+                navigate(`/contactDetails/${_id}`);
+            })
     }
 
     return (
