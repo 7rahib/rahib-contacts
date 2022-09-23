@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 const ContactRow = ({ contact, refetch }) => {
     const navigate = useNavigate();
-    const { name, company, email, phone, img } = contact;
+    const { _id, name, company, email, phone, img } = contact;
     const handleClick = () => {
-        navigate('/contactDetails');
+        navigate(`/contactDetails/${_id}`);
     }
 
     return (
-        <tr onClick={handleClick} className="hover">
+        <tr onClick={() => handleClick(_id)} className="hover">
             <th>
                 <label>
                     <input type="checkbox" className="checkbox" />

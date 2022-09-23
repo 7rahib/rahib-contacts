@@ -17,7 +17,7 @@ function App() {
           <Route index element={<Contacts />} />
           <Route path='/frequentlyUsed' element={<FreqeuntlyUsed />} />
           <Route path='/addContact' element={<AddContact />} />
-          <Route path='/contactDetails' element={<ContactDetails />} />
+          <Route path='/contactDetails/:_id' element={<ContactDetails />} />
         </Route>
       </Routes>
       <Footer></Footer>
