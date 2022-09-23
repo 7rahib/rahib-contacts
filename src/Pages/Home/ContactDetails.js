@@ -16,7 +16,7 @@ const ContactDetails = () => {
     const { _id } = useParams();
     const navigate = useNavigate();
 
-    const { data: contactDetails, isLoading } = useQuery('contactDetails', () => fetch(`http://localhost:5000/contactDetails/${_id}`).then(res => res.json()))
+    const { data: contactDetails, isLoading, refetch } = useQuery('contactDetails', () => fetch(`http://localhost:5000/contactDetails/${_id}`).then(res => res.json()))
 
     const handleFav = (_id) => {
         swal({
@@ -39,7 +39,17 @@ const ContactDetails = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    console.log('Deleted')
+                    fetch(`http://localhost:5000/contacts/${_id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'content-type': 'application/json',
+                        }
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            refetch()
+                            navigate('/')
+                        })
                 }
             });
     }
