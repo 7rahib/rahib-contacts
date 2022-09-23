@@ -18,15 +18,38 @@ const ContactDetails = () => {
 
     const { data: contactDetails, isLoading, refetch } = useQuery('contactDetails', () => fetch(`http://localhost:5000/contactDetails/${_id}`).then(res => res.json()))
 
-    const handleFav = (_id) => {
+    const handleFav = _id => {
         swal({
-            title: "Add to your favourite list?",
+            title: "Are you sure?",
             icon: "info",
             buttons: true,
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    console.log('Favourite')
+                    fetch(`http://localhost:5000/contacts/fav/${_id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json',
+                        }
+                    })
+                        .then(res => {
+                            if (res.status === 403) {
+                                swal('Failed to star this contact');
+                            }
+                            return res.json()
+                        })
+                        .then(data => {
+                            if (data.modifiedCount > 0) {
+                                refetch();
+                                swal();
+                                swal({
+                                    title: "Successfully made this a starred contact",
+                                    icon: "success",
+                                })
+                            }
+
+                        })
+                } else {
                 }
             });
     }
@@ -53,6 +76,12 @@ const ContactDetails = () => {
                 }
             });
     }
+    const handleIsFav = () => {
+        swal({
+            title: "Already Starred",
+            icon: "success",
+        })
+    }
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -69,9 +98,7 @@ const ContactDetails = () => {
                     <h3 className='text-3xl font-semibold ml-5 text-center'>{contactDetails.name}</h3>
                 </div>
                 <div className='flex lg:ml-10 sm:mt-5 items-center'>
-
-                    <button className='text-2xl mr-2 text-gray-400 mb-2' onClick={() => handleFav(_id)}>☆</button>
-                    {/* <button className='text-xl mr-2 font-thin text-gray-400' onClick={() => handleDelete(_id)}><MdOutlineMoreVert /></button> */}
+                    {(contactDetails.role ? <button className='text-2xl mr-2 text-blue-400 mb-2' onClick={handleIsFav}><MdStarRate /></button> : <button className='text-2xl mr-2 text-gray-400 mb-2' onClick={() => handleFav(_id)}>☆</button>)}
                     <div className="dropdown dropdown-end">
                         <button className='text-xl mr-2 font-thin text-gray-400'><MdOutlineMoreVert /></button>
                         <ul tabIndex={0} className="mt-3 p-1 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-20">
