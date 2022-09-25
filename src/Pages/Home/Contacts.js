@@ -4,6 +4,7 @@ import Loading from '../Shared/Loading';
 import ContactRow from './ContactRow';
 
 const Contacts = () => {
+
     const { data: contacts, isLoading, refetch } = useQuery('contacts', () => fetch('http://localhost:5000/contacts').then(res => res.json()))
     const { data: starContacts, isStarLoading } = useQuery('starContacts', () => fetch('http://localhost:5000/starContact').then(res => res.json()))
 
