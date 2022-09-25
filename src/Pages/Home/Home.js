@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { FiClock } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import { FiPrinter } from "react-icons/fi";
+import { FiTrash2 } from "react-icons/fi";
 import { useQuery } from 'react-query';
 import { useReactToPrint } from 'react-to-print';
 
@@ -26,6 +27,8 @@ const Home = () => {
                         <li><Link className='focus:text-blue-600 mt-1' to='/frequentlyUsed'><FiClock className='text-xl' /> Frequently Contacted</Link></li>
                         <div className='divider'></div>
                         <li><button onClick={handlePrint} className='focus:text-blue-600' to='/frequentlyUsed'><FiPrinter className='text-xl' /> Print</button></li>
+                        <div className='divider'></div>
+                        <li><Link to='/trash' className='focus:text-blue-600'><FiTrash2 className='text-xl' /> Trash</Link></li>
                     </ul>
                 </div>
             </div>

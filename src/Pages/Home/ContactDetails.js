@@ -70,6 +70,31 @@ const ContactDetails = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
+                            const newTrash = {
+                                img: contactDetails.img,
+                                name: contactDetails.name,
+                                company: contactDetails.company,
+                                phone: contactDetails.phone,
+                                email: contactDetails.email,
+                                birthDate: contactDetails.birthDate,
+                                note: contactDetails.note
+                            };
+                            fetch(`http://localhost:5000/contact/${_id}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'content-type': 'application/json',
+                                },
+                                body: JSON.stringify(newTrash)
+                            })
+                                .then(res => {
+                                    return res.json()
+                                })
+                                .then(data => {
+                                    if (data.modifiedCount > 0) {
+                                        console.log('Trashed');
+                                    }
+
+                                })
                             refetch()
                             navigate('/')
                         })
