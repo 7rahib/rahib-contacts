@@ -77,11 +77,32 @@ const ContactDetails = () => {
             });
     }
 
-    const handleIsFav = () => {
+    const handleRemoveFav = (_id) => {
         swal({
-            title: "Already Starred",
-            icon: "success",
+            title: "Are you sure?",
+            icon: "info",
+            buttons: true,
         })
+            .then((willDelete) => {
+                if (willDelete) {
+                    fetch(`http://localhost:5000/contacts/removeFav/${_id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json',
+                        }
+                    })
+                        .then(res => { return res.json() })
+                        .then(data => {
+                            if (data.modifiedCount > 0) {
+                                refetch();
+                                swal({
+                                    title: "Not a starred contact anymore",
+                                    icon: "info",
+                                })
+                            }
+                        })
+                }
+            });
     }
 
     const handleUpdate = (_id) => {
@@ -104,7 +125,7 @@ const ContactDetails = () => {
                     <h3 className='text-3xl font-semibold ml-5 text-center'>{contactDetails.name}</h3>
                 </div>
                 <div className='flex lg:ml-10 sm:mt-5 items-center'>
-                    {(contactDetails.role ? <button className='text-2xl mr-2 text-blue-400 mb-2' onClick={handleIsFav}><MdStarRate /></button> : <button className='text-2xl mr-2 text-gray-400 mb-2' onClick={() => handleFav(_id)}>☆</button>)}
+                    {(contactDetails.role ? <button className='text-2xl mr-2 text-blue-400 mb-2' onClick={() => handleRemoveFav(_id)}><MdStarRate /></button> : <button className='text-2xl mr-2 text-gray-400 mb-2' onClick={() => handleFav(_id)}>☆</button>)}
                     <div className="dropdown dropdown-end">
                         <button className='text-xl mr-2 font-thin text-gray-400'><MdOutlineMoreVert /></button>
                         <ul tabIndex={0} className="mt-3 p-1 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-20">
