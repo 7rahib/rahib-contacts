@@ -1,20 +1,24 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import { useNavigate, useParams } from 'react-router-dom';
 import { BiUser } from "react-icons/bi";
 import { BiBuildings } from "react-icons/bi";
 import { BiMailSend } from "react-icons/bi";
 import { BiPhone } from "react-icons/bi";
 import { BiCake } from "react-icons/bi";
 import { BiNote } from "react-icons/bi";
-import { useNavigate } from 'react-router-dom';
+import Loading from '../Shared/Loading';
 
-const AddContact = () => {
+const UpdateContact = () => {
+    const { _id } = useParams();
     const navigate = useNavigate();
+    const { data: contactDetails, isLoading } = useQuery('contactDetails', () => fetch(`http://localhost:5000/contactDetails/${_id}`).then(res => res.json()))
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const imageStorageKey = 'a1d7d3a7e4fde5cadc71e0a2315af238';
 
-    const onSubmit = async data => {
+    const onSubmit = async (data) => {
         const email = data.email;
         const formData = new FormData();
         const image = data.image[0];
@@ -27,7 +31,7 @@ const AddContact = () => {
             .then(result => {
                 if (result.success) {
                     const img = result.data.url;
-                    const newContact = {
+                    const updateContact = {
                         img: img,
                         name: data.name,
                         company: data.company,
@@ -36,23 +40,28 @@ const AddContact = () => {
                         birthDate: data.birthDate,
                         note: data.note
                     };
-                    fetch(`http://localhost:5000/contacts/${email}`, {
+                    fetch(`http://localhost:5000/updateContacts/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',
                         },
-                        body: JSON.stringify(newContact)
+                        body: JSON.stringify(updateContact)
                     }).then(res => res.json())
                         .then(data => {
                             console.log(data);
-                            navigate('/');
+                            navigate(`/contactDetails/${_id}`);
                         })
                 }
             })
     }
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
     return (
         <div>
-            <h3 className='text-3xl font-semibold ml-5'>Create a new Contact</h3>
+            <button className='btn btn-sm btn-ghost' onClick={() => navigate(-1)}>◀︎ Go Back</button>
+            <h3 className='text-3xl font-semibold ml-5'>Update your contact</h3>
             <div class="flex justify-center">
                 <div class="flex items-center w-full max-w-3xl mx-auto lg:px-12 lg:w-3/5">
                     <div class="w-full p-8">
@@ -70,7 +79,7 @@ const AddContact = () => {
                             <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                                 <div className='flex justify-center items-center'>
                                     <label className='mr-2'><BiUser /></label>
-                                    <input type="text" placeholder="Full Name" name='name' class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    <input type="text" placeholder="Full Name" name='name' defaultValue={contactDetails.name} class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                         {...register("name", {
                                             required: {
                                                 value: true,
@@ -84,49 +93,27 @@ const AddContact = () => {
                                 </div>
                                 <div className='flex justify-center items-center'>
                                     <label className='mr-2'><BiBuildings /></label>
-                                    <input type="text" placeholder="Company and Job Title" name='company' class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                                        {...register("company")} />
+                                    <input type="text" placeholder="Company and Job Title" name='company' defaultValue={contactDetails.company} class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" {...register("company")} />
                                 </div>
                                 <div className='flex justify-center items-center'>
                                     <label className='mr-2'><BiPhone /></label>
-                                    <input type="text" placeholder="Phone number" name='phone' class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                                        {...register("phone", {
-                                            required: {
-                                                value: true,
-                                                message: 'Phone number is required'
-                                            }
-                                        })}
-                                    />
-                                    <label className="label">
-                                        {errors.phone?.type === 'required' && <span className="label-text-alt text-red-500">{errors.phone.message}</span>}
-                                    </label>
+                                    <input type="text" placeholder="Phone number" name='phone' defaultValue={contactDetails.phone} class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"{...register("phone")} />
                                 </div>
                                 <div className='flex justify-center items-center'>
                                     <label className='mr-2'><BiMailSend /></label>
-                                    <input type="email" placeholder="Email address" name='email' class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                                        {...register("email", {
-                                            required: {
-                                                value: true,
-                                                message: 'Email Address is required'
-                                            }
-                                        })}
-                                    />
-                                    <label className="label">
-                                        {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                                    </label>
+                                    <input type="email" placeholder="Email address" name='email' defaultValue={contactDetails.email} class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" {...register("email")} />
                                 </div>
                                 <div>
                                     <div className='flex justify-center items-center'>
                                         <label className='mr-2'><BiCake /></label>
-                                        <input type="text" placeholder="Birthdate" name='birthDate' class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                                            {...register("birthDate")} />
+                                        <input type="text" placeholder="Birthdate" name='birthDate' defaultValue={contactDetails.birthDate} class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"{...register("birthDate")} />
                                     </div>
                                     <label class="block mb-2 text-xs text-gray-400 ml-7">dd/mm/yyyy</label>
                                 </div>
                                 <div>
                                     <div className='flex justify-center items-center'>
                                         <label className='mr-2'><BiNote /></label>
-                                        <input type="text" placeholder="Note" name='note' class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"{...register("note")} />
+                                        <input type="text" placeholder="Note" name='note' defaultValue={contactDetails.note} class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" {...register("note")} />
                                     </div>
                                     <label class="block mb-2 text-xs text-gray-400 ml-7">Note</label>
                                 </div>
@@ -149,4 +136,4 @@ const AddContact = () => {
     );
 };
 
-export default AddContact;
+export default UpdateContact;

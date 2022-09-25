@@ -76,18 +76,24 @@ const ContactDetails = () => {
                 }
             });
     }
+
     const handleIsFav = () => {
         swal({
             title: "Already Starred",
             icon: "success",
         })
     }
+
+    const handleUpdate = (_id) => {
+        navigate(`/updateContact/${_id}`);
+    }
+
     if (isLoading) {
         return <Loading></Loading>
     }
     return (
         <div className='p-8'>
-            <button className='btn btn-sm btn-ghost' onClick={() => navigate(-1)}>◀︎ Go Back</button>
+            <button className='btn btn-sm btn-ghost' onClick={() => navigate('/')}>◀︎ Go Back</button>
             <div className='lg:flex items-end'>
                 <div className="avatar ml-12">
                     <div className="w-80 rounded-full">
@@ -105,7 +111,7 @@ const ContactDetails = () => {
                             <li><button onClick={() => handleDelete(_id)}>Delete</button></li>
                         </ul>
                     </div>
-                    <Link className='btn btn-sm btn-primary'>Edit</Link>
+                    <button onClick={() => handleUpdate(_id)} className='btn btn-sm btn-primary'>Edit</button>
                 </div>
             </div >
             <div className="divider"></div>

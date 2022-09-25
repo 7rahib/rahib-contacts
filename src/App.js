@@ -5,6 +5,7 @@ import ContactDetails from './Pages/Home/ContactDetails';
 import Contacts from './Pages/Home/Contacts';
 import FreqeuntlyUsed from './Pages/Home/FreqeuntlyUsed';
 import Home from './Pages/Home/Home';
+import UpdateContact from './Pages/Home/UpdateContact';
 import Footer from './Pages/Shared/Footer';
 import Navbar from './Pages/Shared/Navbar';
 
@@ -18,6 +19,7 @@ function App() {
           <Route path='/frequentlyUsed' element={<FreqeuntlyUsed />} />
           <Route path='/addContact' element={<AddContact />} />
           <Route path='/contactDetails/:_id' element={<ContactDetails />} />
+          <Route path='/updateContact/:_id' element={<UpdateContact />} />
         </Route>
       </Routes>
       <Footer></Footer>
