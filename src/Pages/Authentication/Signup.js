@@ -48,7 +48,6 @@ const Signup = () => {
                         body: JSON.stringify(newUser)
                     }).then(res => res.json())
                         .then(data => {
-                            console.log(data);
                         })
                 }
             })

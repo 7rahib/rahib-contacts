@@ -91,7 +91,6 @@ const ContactDetails = () => {
                                 })
                                 .then(data => {
                                     if (data.modifiedCount > 0) {
-                                        console.log('Trashed');
                                     }
 
                                 })
@@ -154,7 +153,7 @@ const ContactDetails = () => {
                     <div className="dropdown dropdown-end">
                         <button className='text-xl mr-2 font-thin text-gray-400'><MdOutlineMoreVert /></button>
                         <ul tabIndex={0} className="mt-3 p-1 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-20">
-                            <li><button onClick={() => handleDelete(_id)}>Delete</button></li>
+                            <li><button onClick={() => handleDelete(_id)}>Trash</button></li>
                         </ul>
                     </div>
                     <button onClick={() => handleUpdate(_id)} className='btn btn-sm btn-primary'>Edit</button>

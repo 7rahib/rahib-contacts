@@ -17,7 +17,6 @@ const ContactRow = ({ contact, refetch }) => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     refetch();
-                    console.log('Updated');
                 }
                 navigate(`/contactDetails/${_id}`);
             })

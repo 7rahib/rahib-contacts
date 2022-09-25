@@ -7,14 +7,12 @@ const Contacts = () => {
 
     const { data: contacts, isLoading, refetch } = useQuery('contacts', () => fetch('http://localhost:5000/contacts').then(res => res.json()))
     const { data: starContacts, isStarLoading } = useQuery('starContacts', () => fetch('http://localhost:5000/starContact').then(res => res.json()))
-
-    console.log(starContacts);
     if (isLoading || isStarLoading) {
         return <Loading></Loading>
     }
     return (
         <div>
-            {(starContacts?.email) ? <div>
+            {(starContacts?.length) ? <div>
                 <h5 className='text-xl font-semibold'>Starred Contacts</h5>
                 <div className="overflow-x-auto w-full">
                     <table className="table w-full">
