@@ -31,7 +31,7 @@ const Login = () => {
     }
 
     if (user || googleUser) {
-        navigate('/');
+        navigate(from, { replace: true });
     }
 
     if (error || googleError) {

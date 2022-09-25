@@ -13,7 +13,7 @@ const Contacts = () => {
     }
     return (
         <div>
-            <div>
+            {(starContacts[0]?.email) ? <div>
                 <h5 className='text-xl font-semibold'>Starred Contacts</h5>
                 <div className="overflow-x-auto w-full">
                     <table className="table w-full">
@@ -39,6 +39,9 @@ const Contacts = () => {
                     </table>
                 </div>
             </div>
+                :
+                <></>
+            }
             <div>
                 <h5 className='text-xl font-semibold'>All Contacts</h5>
                 <div className="overflow-x-auto w-full">

@@ -26,7 +26,7 @@ const Navbar = () => {
                 <div className="form-control">
                     <input type="text" placeholder="Search" className="input input-bordered ml-10" />
                 </div>
-                {(user[0] ? <div className="dropdown dropdown-end">
+                {(user[0]?.email ? <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img src={users[0]?.img} alt='Profile' />
