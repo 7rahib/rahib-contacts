@@ -28,7 +28,7 @@ const Contacts = () => {
                         </thead>
                         <tbody>
                             {
-                                starContacts.map((contact, index) => <ContactRow
+                                starContacts?.map((contact, index) => <ContactRow
                                     key={contact._id}
                                     contact={contact}
                                     refetch={refetch}
@@ -54,7 +54,7 @@ const Contacts = () => {
                         </thead>
                         <tbody>
                             {
-                                contacts.map((contact, index) => <ContactRow
+                                contacts?.map((contact, index) => <ContactRow
                                     key={contact._id}
                                     contact={contact}
                                     refetch={refetch}

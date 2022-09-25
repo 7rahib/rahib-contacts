@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Login from './Pages/Authentication/Login';
+import Signup from './Pages/Authentication/Signup';
 import AddContact from './Pages/Home/AddContact';
 import ContactDetails from './Pages/Home/ContactDetails';
 import Contacts from './Pages/Home/Contacts';
@@ -14,6 +16,8 @@ function App() {
     <div>
       <Navbar></Navbar>
       <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
         <Route path='/' element={<Home />}>
           <Route index element={<Contacts />} />
           <Route path='/frequentlyUsed' element={<FreqeuntlyUsed />} />

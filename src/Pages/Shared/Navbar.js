@@ -1,8 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillIdcard } from "react-icons/ai";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { useQuery } from 'react-query';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
+    const user = useAuthState(auth);
+    const { data: users } = useQuery('users', () => fetch('http://localhost:5000/users').then(res => res.json()))
+    const logout = () => {
+        signOut(auth);
+    };
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -17,17 +26,17 @@ const Navbar = () => {
                 <div className="form-control">
                     <input type="text" placeholder="Search" className="input input-bordered ml-10" />
                 </div>
-                <div className="dropdown dropdown-end">
+                {(user[0] ? <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="https://placeimg.com/80/80/people" alt='Profile' />
+                            <img src={users[0]?.img} alt='Profile' />
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                         <li><Link to="/profile" className="justify-between"> Profile</Link></li>
-                        <li><button>Logout</button></li>
+                        <li><button onClick={logout}>Logout</button></li>
                     </ul>
-                </div>
+                </div> : <Link className='btn btn-xs btn-ghost' to='/login'>Login</Link>)}
             </div>
         </div>
     );
