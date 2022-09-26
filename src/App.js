@@ -8,6 +8,8 @@ import ContactDetails from './Pages/Home/ContactDetails';
 import Contacts from './Pages/Home/Contacts';
 import FreqeuntlyUsed from './Pages/Home/FreqeuntlyUsed';
 import Home from './Pages/Home/Home';
+import Profile from './Pages/Home/Profile/Profile';
+import UpdateProfile from './Pages/Home/Profile/UpdateProfile';
 import Trash from './Pages/Home/Trash';
 import UpdateContact from './Pages/Home/UpdateContact';
 import Footer from './Pages/Shared/Footer';
@@ -20,6 +22,8 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/updateProfile' element={<UpdateProfile />} />
         <Route path='/' element={<RequiredAuth><Home /></RequiredAuth>}>
           <Route index element={<Contacts />} />
           <Route path='/frequentlyUsed' element={<FreqeuntlyUsed />} />

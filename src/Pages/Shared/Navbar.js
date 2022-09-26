@@ -6,11 +6,11 @@ import auth from '../../firebase.init';
 import { useQuery } from 'react-query';
 import { signOut } from 'firebase/auth';
 
-
 const Navbar = () => {
 
     const user = useAuthState(auth);
-    const { data: users } = useQuery('users', () => fetch('http://localhost:5000/users').then(res => res.json()))
+    const email = user[0]?.email;
+    const { data: users } = useQuery('users', () => fetch(`http://localhost:5000/users/${email}`).then(res => res.json()))
     const logout = () => {
         signOut(auth);
     };
@@ -31,7 +31,7 @@ const Navbar = () => {
                 {(user[0]?.email ? <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src={users[0]?.img} alt='Profile' />
+                            <img src={users?.img} alt='Profile' />
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
