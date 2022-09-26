@@ -17,7 +17,7 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
-            <div className='text-center p-4 bg-base-300 text-neutral-content'>
+            <div className='text-center p-4 bg-base-300'>
                 <p>Copyright © 2022 - All right reserved by Naimur Rashid Rahib</p>
             </div>
         </div>

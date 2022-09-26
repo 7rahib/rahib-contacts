@@ -12,7 +12,7 @@ const Home = () => {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     });
-    const { data: contacts } = useQuery('contacts', () => fetch('http://localhost:5000/contacts').then(res => res.json()))
+    const { data: contacts } = useQuery('contacts', () => fetch('https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts').then(res => res.json()))
     return (
         <div>
             <div className="drawer drawer-mobile">

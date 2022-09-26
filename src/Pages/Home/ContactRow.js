@@ -5,7 +5,7 @@ const ContactRow = ({ contact, refetch }) => {
     const navigate = useNavigate();
     const { _id, name, company, email, phone, img } = contact;
     const handleClick = () => {
-        fetch(`http://localhost:5000/contacts/count/${_id}`, {
+        fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts/count/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

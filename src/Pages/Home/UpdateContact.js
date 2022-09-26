@@ -13,7 +13,7 @@ import Loading from '../Shared/Loading';
 const UpdateContact = () => {
     const { _id } = useParams();
     const navigate = useNavigate();
-    const { data: contactDetails, isLoading } = useQuery('contactDetails', () => fetch(`http://localhost:5000/contactDetails/${_id}`).then(res => res.json()))
+    const { data: contactDetails, isLoading } = useQuery('contactDetails', () => fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contactDetails/${_id}`).then(res => res.json()))
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const imageStorageKey = 'a1d7d3a7e4fde5cadc71e0a2315af238';
@@ -40,7 +40,7 @@ const UpdateContact = () => {
                         birthDate: data.birthDate,
                         note: data.note
                     };
-                    fetch(`http://localhost:5000/updateContacts/${_id}`, {
+                    fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/updateContacts/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',

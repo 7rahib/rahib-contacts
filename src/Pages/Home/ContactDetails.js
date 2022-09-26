@@ -16,7 +16,7 @@ const ContactDetails = () => {
     const { _id } = useParams();
     const navigate = useNavigate();
 
-    const { data: contactDetails, isLoading, refetch } = useQuery('contactDetails', () => fetch(`http://localhost:5000/contactDetails/${_id}`).then(res => res.json()))
+    const { data: contactDetails, isLoading, refetch } = useQuery('contactDetails', () => fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contactDetails/${_id}`).then(res => res.json()))
 
     const handleFav = _id => {
         swal({
@@ -26,7 +26,7 @@ const ContactDetails = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`http://localhost:5000/contacts/fav/${_id}`, {
+                    fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts/fav/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',
@@ -62,7 +62,7 @@ const ContactDetails = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`http://localhost:5000/contacts/${_id}`, {
+                    fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts/${_id}`, {
                         method: 'DELETE',
                         headers: {
                             'content-type': 'application/json',
@@ -79,7 +79,7 @@ const ContactDetails = () => {
                                 birthDate: contactDetails.birthDate,
                                 note: contactDetails.note
                             };
-                            fetch(`http://localhost:5000/contact/${_id}`, {
+                            fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contact/${_id}`, {
                                 method: 'PUT',
                                 headers: {
                                     'content-type': 'application/json',
@@ -109,7 +109,7 @@ const ContactDetails = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`http://localhost:5000/contacts/removeFav/${_id}`, {
+                    fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts/removeFav/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',

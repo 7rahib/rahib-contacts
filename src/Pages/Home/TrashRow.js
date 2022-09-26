@@ -6,7 +6,7 @@ const TrashRow = ({ trash }) => {
     const { _id, name, email, phone, img } = trash;
 
     const handleDelete = (_id) => {
-        fetch(`http://localhost:5000/contact/${_id}`, {
+        fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contact/${_id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',

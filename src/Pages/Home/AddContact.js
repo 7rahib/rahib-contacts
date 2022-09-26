@@ -36,7 +36,7 @@ const AddContact = () => {
                         birthDate: data.birthDate,
                         note: data.note
                     };
-                    fetch(`http://localhost:5000/contacts/${email}`, {
+                    fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts/${email}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',

@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import TrashRow from './TrashRow';
 
 const Trash = () => {
-    const { data: allTrash, isLoading, refetch } = useQuery('allTrash', () => fetch('http://localhost:5000/contact').then(res => res.json()))
+    const { data: allTrash, isLoading, refetch } = useQuery('allTrash', () => fetch('https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contact').then(res => res.json()))
 
     if (isLoading) {
         return <Loading></Loading>
