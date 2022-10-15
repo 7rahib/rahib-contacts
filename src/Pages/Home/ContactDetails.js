@@ -213,9 +213,9 @@ const ContactDetails = () => {
                     <h3 className='text-3xl font-semibold ml-5 text-center'>{contactDetails.name}</h3>
                 </div>
                 <div className='flex lg:ml-10 sm:mt-5 items-center'>
-                    <button onClick={openModal} className='text-2xl mr-2 text-blue-400' ><MdOutlineLabel /></button>
-                    {(contactDetails.role ? <button className='text-2xl mr-2 text-blue-400 mb-1' onClick={() => handleRemoveFav(_id)}><MdStarRate /></button> : <button className='text-2xl mr-2 text-gray-400 mb-1' onClick={() => handleFav(_id)}>☆</button>)}
-                    <div className="dropdown dropdown-end">
+                    <button onClick={openModal} className='text-2xl mr-2 text-blue-400 tooltip' data-tip="Label"><MdOutlineLabel /></button>
+                    {(contactDetails.role ? <button className='text-2xl mr-2 text-blue-400 mb-1 tooltip' data-tip="Star Contact" onClick={() => handleRemoveFav(_id)}><MdStarRate /></button> : <button className='text-2xl mr-2 text-gray-400 mb-1 tooltip' data-tip="Star Contact" onClick={() => handleFav(_id)}>☆</button>)}
+                    <div className="dropdown dropdown-end tooltip" data-tip="More Options">
                         <button className='text-xl mr-2 font-thin text-gray-400 mt-1'><MdOutlineMoreVert /></button>
                         <ul tabIndex={0} className="mt-3 p-1 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-20">
                             <li><button onClick={() => handleDelete(_id)}>Trash</button></li>
