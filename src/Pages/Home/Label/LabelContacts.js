@@ -26,7 +26,7 @@ const LabelContacts = () => {
 
     return (
         <div>
-            Label Contacts
+            <h3 className='text-xl font-semibold'>{label} Contacts</h3>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
