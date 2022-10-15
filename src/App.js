@@ -8,6 +8,8 @@ import ContactDetails from './Pages/Home/ContactDetails';
 import Contacts from './Pages/Home/Contacts';
 import FreqeuntlyUsed from './Pages/Home/FreqeuntlyUsed';
 import Home from './Pages/Home/Home';
+import AllLabel from './Pages/Home/Label/AllLabel';
+import LabelContacts from './Pages/Home/Label/LabelContacts';
 import Profile from './Pages/Home/Profile/Profile';
 import UpdateProfile from './Pages/Home/Profile/UpdateProfile';
 import Trash from './Pages/Home/Trash';
@@ -31,6 +33,8 @@ function App() {
           <Route path='/addContact' element={<AddContact />} />
           <Route path='/contactDetails/:_id' element={<ContactDetails />} />
           <Route path='/updateContact/:_id' element={<UpdateContact />} />
+          <Route path='/allLabel' element={<RequiredAuth><AllLabel /></RequiredAuth>}></Route>
+          <Route path='/labelContacts' element={<RequiredAuth><LabelContacts /></RequiredAuth>} />
         </Route>
       </Routes>
       <Footer></Footer>

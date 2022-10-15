@@ -96,7 +96,7 @@ const Home = () => {
                         <li><Link className='focus:text-blue-600 mt-1' to='/frequentlyUsed'><FiClock className='text-xl' /> Frequently Contacted</Link></li>
                         <li><Link className='focus:text-blue-600 mt-1' to='/'><FiCommand className='text-xl' /> Merge & Fix</Link></li>
                         <div className='divider'></div>
-                        <li><Link className='focus:text-blue-600 mt-1' to='/'><FiChevronUp className='text-xl' /> Labels</Link></li>
+                        <li><Link className='focus:text-blue-600 mt-1' to='/allLabel'><FiChevronUp className='text-xl' /> Labels</Link></li>
                         <li><button onClick={openModal} className='focus:text-blue-600 mt-1' to='/'><FiPlus className='text-xl' /> Create Label</button>
                             <Modal
                                 isOpen={modalIsOpen}
