@@ -9,14 +9,54 @@ import { BiBuildings } from "react-icons/bi";
 import { BiNote } from "react-icons/bi";
 import swal from 'sweetalert';
 import { MdOutlineMoreVert } from "react-icons/md";
+import { MdOutlineLabel } from "react-icons/md";
 import { MdStarRate } from "react-icons/md";
+import Modal from 'react-modal';
+import LabelListDetails from './LabelListDetails';
+
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
+
+Modal.setAppElement('#root');
 
 
 const ContactDetails = () => {
     const { _id } = useParams();
     const navigate = useNavigate();
 
+
+    let subtitle;
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        subtitle.style.color = '#f00';
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+
+
+
     const { data: contactDetails, isLoading, refetch } = useQuery('contactDetails', () => fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contactDetails/${_id}`).then(res => res.json()))
+
+    const { data: allLabels } = useQuery('allLabels', () => fetch('http://localhost:5000/labels').then(res => res.json()))
 
     const handleFav = _id => {
         swal({
@@ -129,6 +169,30 @@ const ContactDetails = () => {
             });
     }
 
+
+    const handlelabel = (e, id, labelvalue) => {
+        e.preventDefault();
+        const ManageLabel = {
+            label: labelvalue,
+        };
+        console.log(ManageLabel);
+        fetch(`http://localhost:5000/labels/${id}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(ManageLabel),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                swal({
+                    title: "Contact added to this label",
+                    icon: "success",
+                })
+                closeModal();
+            });
+    };
+
     const handleUpdate = (_id) => {
         navigate(`/updateContact/${_id}`);
     }
@@ -149,9 +213,10 @@ const ContactDetails = () => {
                     <h3 className='text-3xl font-semibold ml-5 text-center'>{contactDetails.name}</h3>
                 </div>
                 <div className='flex lg:ml-10 sm:mt-5 items-center'>
-                    {(contactDetails.role ? <button className='text-2xl mr-2 text-blue-400 mb-2' onClick={() => handleRemoveFav(_id)}><MdStarRate /></button> : <button className='text-2xl mr-2 text-gray-400 mb-2' onClick={() => handleFav(_id)}>☆</button>)}
+                    <button onClick={openModal} className='text-2xl mr-2 text-blue-400' ><MdOutlineLabel /></button>
+                    {(contactDetails.role ? <button className='text-2xl mr-2 text-blue-400 mb-1' onClick={() => handleRemoveFav(_id)}><MdStarRate /></button> : <button className='text-2xl mr-2 text-gray-400 mb-1' onClick={() => handleFav(_id)}>☆</button>)}
                     <div className="dropdown dropdown-end">
-                        <button className='text-xl mr-2 font-thin text-gray-400'><MdOutlineMoreVert /></button>
+                        <button className='text-xl mr-2 font-thin text-gray-400 mt-1'><MdOutlineMoreVert /></button>
                         <ul tabIndex={0} className="mt-3 p-1 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-20">
                             <li><button onClick={() => handleDelete(_id)}>Trash</button></li>
                         </ul>
@@ -174,6 +239,30 @@ const ContactDetails = () => {
                 <div className='flex items-center mb-1'><BiNote className='text-xl mr-5' />
                     {(contactDetails.note) ? <h3>{contactDetails.note}</h3> : <Link className='text-blue-500'>Add note</Link>}</div>
             </div>
+            <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <h1 className="mb-5">Manage Labels</h1>
+                <div className='w-full'>
+                    {allLabels.map((allLabel) => <LabelListDetails
+                        allLabel={allLabel}
+                        key={allLabel._id}
+                        onLabelChange={(event) =>
+                            handlelabel(event, _id, allLabel.label)
+                        }
+                    ></LabelListDetails>
+                    )}
+                </div>
+                <div className="flex justify-end mt-3">
+                    <button className="btn btn-sm mr-3" onClick={closeModal}>
+                        Cancel
+                    </button>
+                </div>
+            </Modal>
         </div >
 
     );
