@@ -7,7 +7,7 @@ import auth from '../../../firebase.init';
 const Profile = () => {
     const user = useAuthState(auth);
     const email = user[0]?.email;
-    const { data: users } = useQuery('users', () => fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/users/${email}`).then(res => res.json()))
+    const { data: users } = useQuery('users', () => fetch(`https://rahib-contacts.onrender.com/users/${email}`).then(res => res.json()))
     return (
         <div>
             <h1 className="text-2xl m-3 text-center text-black font-semibold">My Profile</h1>

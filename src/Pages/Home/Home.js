@@ -59,7 +59,7 @@ const Home = () => {
             label: data.labelName,
             userEmail: email,
         };
-        fetch("http://localhost:5000/label", {
+        fetch("https://rahib-contacts.onrender.com/label", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -81,7 +81,7 @@ const Home = () => {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     });
-    const { data: contacts } = useQuery('contacts', () => fetch('https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts').then(res => res.json()))
+    const { data: contacts } = useQuery('contacts', () => fetch('https://rahib-contacts.onrender.com/contacts').then(res => res.json()))
     return (
         <div>
             <div className="drawer drawer-mobile">

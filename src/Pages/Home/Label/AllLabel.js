@@ -5,7 +5,7 @@ import AllLabelList from './AllLabelList';
 
 const AllLabel = () => {
 
-    const { data: allLabels, isLoading, refetch } = useQuery('allLabels', () => fetch('http://localhost:5000/labels').then(res => res.json()))
+    const { data: allLabels, isLoading, refetch } = useQuery('allLabels', () => fetch('https://rahib-contacts.onrender.com/labels').then(res => res.json()))
 
     if (isLoading) {
         <Loading></Loading>

@@ -54,9 +54,9 @@ const ContactDetails = () => {
 
 
 
-    const { data: contactDetails, isLoading, refetch } = useQuery('contactDetails', () => fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contactDetails/${_id}`).then(res => res.json()))
+    const { data: contactDetails, isLoading, refetch } = useQuery('contactDetails', () => fetch(`https://rahib-contacts.onrender.com/contactDetails/${_id}`).then(res => res.json()))
 
-    const { data: allLabels } = useQuery('allLabels', () => fetch('http://localhost:5000/labels').then(res => res.json()))
+    const { data: allLabels } = useQuery('allLabels', () => fetch('https://rahib-contacts.onrender.com/labels').then(res => res.json()))
 
     const handleFav = _id => {
         swal({
@@ -66,7 +66,7 @@ const ContactDetails = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts/fav/${_id}`, {
+                    fetch(`https://rahib-contacts.onrender.com/contacts/fav/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',
@@ -102,7 +102,7 @@ const ContactDetails = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts/${_id}`, {
+                    fetch(`https://rahib-contacts.onrender.com/contacts/${_id}`, {
                         method: 'DELETE',
                         headers: {
                             'content-type': 'application/json',
@@ -119,7 +119,7 @@ const ContactDetails = () => {
                                 birthDate: contactDetails.birthDate,
                                 note: contactDetails.note
                             };
-                            fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contact/${_id}`, {
+                            fetch(`https://rahib-contacts.onrender.com/contact/${_id}`, {
                                 method: 'PUT',
                                 headers: {
                                     'content-type': 'application/json',
@@ -149,7 +149,7 @@ const ContactDetails = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts/removeFav/${_id}`, {
+                    fetch(`https://rahib-contacts.onrender.com/contacts/removeFav/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',
@@ -176,7 +176,7 @@ const ContactDetails = () => {
             label: labelvalue,
         };
         console.log(ManageLabel);
-        fetch(`http://localhost:5000/labels/${id}`, {
+        fetch(`https://rahib-contacts.onrender.com/labels/${id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -248,7 +248,7 @@ const ContactDetails = () => {
             >
                 <h1 className="mb-5">Manage Labels</h1>
                 <div className='w-full'>
-                    {allLabels.map((allLabel) => <LabelListDetails
+                    {allLabels?.map((allLabel) => <LabelListDetails
                         allLabel={allLabel}
                         key={allLabel._id}
                         onLabelChange={(event) =>

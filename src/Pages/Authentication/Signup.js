@@ -40,7 +40,7 @@ const Signup = () => {
                         name: data.name,
                         email: email,
                     };
-                    fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/users/${email}`, {
+                    fetch(`https://rahib-contacts.onrender.com/users/${email}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',

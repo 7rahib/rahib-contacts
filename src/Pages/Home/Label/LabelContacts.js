@@ -11,7 +11,7 @@ const LabelContacts = () => {
     let label = location.state.label;
     const [labelContacts, setLabelContacts] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/contacts")
+        fetch("https://rahib-contacts.onrender.com/contacts")
             .then((res) => res.json())
             .then((data) => {
                 const fetchData = data.filter(

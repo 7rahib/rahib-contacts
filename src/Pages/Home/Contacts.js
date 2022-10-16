@@ -5,8 +5,8 @@ import ContactRow from './ContactRow';
 
 const Contacts = () => {
 
-    const { data: contacts, isLoading, refetch } = useQuery('contacts', () => fetch('https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/contacts').then(res => res.json()))
-    const { data: starContacts, isStarLoading } = useQuery('starContacts', () => fetch('https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/starContact').then(res => res.json()))
+    const { data: contacts, isLoading, refetch } = useQuery('contacts', () => fetch('https://rahib-contacts.onrender.com/contacts').then(res => res.json()))
+    const { data: starContacts, isStarLoading } = useQuery('starContacts', () => fetch('https://rahib-contacts.onrender.com/starContact').then(res => res.json()))
     if (isLoading || isStarLoading) {
         return <Loading></Loading>
     }

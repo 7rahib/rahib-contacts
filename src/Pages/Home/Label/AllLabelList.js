@@ -12,7 +12,7 @@ const AllLabelList = ({ allLabel, refetch }) => {
     }
 
     const deleteLabel = (id) => {
-        fetch(`http://localhost:5000/label/${id}`, {
+        fetch(`https://rahib-contacts.onrender.com/label/${id}`, {
             method: "DELETE",
             headers: {
                 'content-type': 'application/json',

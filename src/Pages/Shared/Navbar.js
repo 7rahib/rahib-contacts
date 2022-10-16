@@ -10,7 +10,7 @@ const Navbar = () => {
 
     const user = useAuthState(auth);
     const email = user[0]?.email;
-    const { data: users } = useQuery('users', () => fetch(`https://rahib-contacts-server-side-wadd-8nmf2cleg-7rahib.vercel.app/users/${email}`).then(res => res.json()))
+    const { data: users } = useQuery('users', () => fetch(`https://rahib-contacts.onrender.com/users/${email}`).then(res => res.json()))
     const logout = () => {
         signOut(auth);
     };
